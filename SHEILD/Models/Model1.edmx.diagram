@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="97102ad0919c44a1853e809187ad289b" Name="Diagram1">
+        <EntityTypeShape EntityType="SiteDataModel.Item" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiteDataModel.User" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiteDataModel.Contact" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SiteDataModel.Course" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SiteDataModel.Training" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SiteDataModel.Order" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SiteDataModel.Comment" Width="1.5" PointX="3" PointY="7" />
+        <AssociationConnector Association="SiteDataModel.FK_Comment_ToItem" />
+        <AssociationConnector Association="SiteDataModel.FK_Comment_ToUser" />
+        <AssociationConnector Association="SiteDataModel.FK_Order_ToItem" />
+        <AssociationConnector Association="SiteDataModel.FK_Order_ToUser" />
+        <AssociationConnector Association="SiteDataModel.FK_Training_ToCourse" />
+        <AssociationConnector Association="SiteDataModel.FK_Training_ToUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

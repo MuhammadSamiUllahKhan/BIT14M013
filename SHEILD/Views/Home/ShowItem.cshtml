@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "ShowItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Application.Models
+@model Application.Models.Item
+
+<div class="row" style="width:70%; margin-left:15%; margin-top:5%;opacity:0.9">
+    <div class="col-lg-4">
+        <img src="~/Content/themes/base/images/@(Model.Id).jpg" style="margin-left: 3%; width: 300px; height: 200px" />
+    </div>
+    <div class="col-lg-6">
+        <h4 style="margin-left:6%">@(Model.Name)</h4>
+        <p style="margin-left:6%">
+            <strong>Price: </strong>@(Model.Price)<br>
+            <strong>Type: </strong>@(Model.Type)<br>
+            <strong>Description: </strong>@(Model.Description)
+        <p>
+    </div>
+</div>
+
+<div class="row bubble" style="width:70%; margin-left:15%; margin-top:5%">
+    @foreach (var c in ViewBag.comments)
+    {
+        <div class="row">
+            <div class="col-lg-3">
+                @(c.UserName) <br />
+                @(c.Date)
+            </div>
+            <div class="col-lg-4">
+                @(c.Body)
+            </div>
+        </div>
+        <br />
+    }
+    <br />
+    @if (Session["user"] == null)
+    {
+        <input type="button" class="navbar-btn btn btn-primary center-block" data-toggle="modal" data-target="#loginModal" value="Login to comment">
+    }
+    else
+    {
+        <form action="/Comment/AddComment" method="post">
+            <input type="hidden" name="ItemId" value="@(Model.Id)">
+            
+            <div class="row">
+                <div class="col-lg-3">
+                    Comment:
+                </div>
+                <div class="col-lg-4">
+                    <textarea cols="10" rows="5" name="body" class="form-control"></textarea>
+                </div>
+            </div>
+            <input type="Submit" class="navbar-btn btn btn-primary center-block" value="comment" />
+         </form>
+    }
+</div>

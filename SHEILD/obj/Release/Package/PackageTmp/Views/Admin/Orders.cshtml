@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Application.Models
+@model List<Application.Models.Order>
+
+
+<div>
+    <table border="2" style="width:70%; margin-left:15%; margin-top:5%;">
+        <tr class="text-center">
+            <td><strong>ID</strong></td>
+            <td><strong>UserId</strong></td>
+            <td><strong>UserName</strong></td>
+            <td><strong>ItemId</strong></td>
+            <td><strong>ItemName</strong></td>
+            <td><strong>Destination</strong></td>
+            <td><strong>Price</strong></td>
+            <td><strong>Fee Status</strong></td>
+            <td><strong>Toggle Fee Status</strong></td>
+            <td><strong>Remove Row</strong></td>
+        </tr>
+        @foreach (var i in Model)
+        {
+            <tr class="text-center">
+                <td>@i.Id</td>
+                <td>@i.UserId</td>
+                <td>@i.UserName</td>
+                <td>@i.ItemId</td>
+                <td>@i.ItemName</td>
+                <td>@i.Destination</td>
+                <td>@i.Price</td>
+                <td>@i.FeeStatus</td>
+                <td><a href="/Order/EditOrder/@(i.Id)">Toggle</a></td>
+                <td><a href="/Order/RemoveOrder/@(i.Id)">Remove</a></td>
+            </tr>
+        }
+    </table>
+</div>

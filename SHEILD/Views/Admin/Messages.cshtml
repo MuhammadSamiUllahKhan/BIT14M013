@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Application.Models
+@model List<Application.Models.Contact>
+<div style="width:70%; margin-left:15%; margin-top:5%;opacity:0.9">
+
+    <h2 class="text-center">Inbox</h2>
+
+    @foreach(var m in Model)
+    {
+    <div class="row" style="margin-top:5%">
+        <div class="col-lg-8">
+            <h4><strong>Name: </strong>@m.Name</h4>
+            <p><strong>Email: </strong>@m.Email<br>
+                <strong>Contact: </strong>@m.Phone<br>
+                <strong>Date: </strong>@(m.Date.ToString())<br>
+            @m.Message
+            <p>
+        </div>
+        <div class="col-md-2 pull-right" style="margin-top:5%">
+            <a title="Remove" href="#" class="btn btn-danger btn-default"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+    </div>
+    }
+
+    <br><br><br>
+
+</div>

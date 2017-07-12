@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Training";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Application.Models
+@model List<Application.Models.Course>
+
+<div>
+
+    <h2 class="text-center">Training Cources</h2>
+
+    @foreach (var c in Model)
+    {
+        <div class="row" style="width:70%; margin-left:15%; margin-top:5%">
+            <div class="col-lg-4">
+                <img src="~/Content/themes/base/images/c@(c.Id).jpg" style="margin-left: 3%; width: 300px; height: 200px" />
+            </div>
+            <div class="col-lg-6">
+                <h4 style="margin-left:6%">@(c.Title)</h4>
+                <p style="margin-left:6%">
+                    <strong>Duration: </strong>@(c.Duration)<br>
+                    <strong>Fee: </strong>@(c.Fee)<br>
+                    <strong>Description: </strong>@(c.Description)
+                <p>
+            </div>
+            @if (Session["user"] == null)
+            {
+                <input type="button" class="navbar-btn btn btn-primary pull-right" data-toggle="modal" data-target="#loginModal" value="Sign in to Apply Now" style="margin-right:0.5%">
+            }
+            else
+            {
+                <input type="button" class="navbar-btn btn btn-primary pull-right" data-toggle="modal" data-target="#confirmModal" value="Apply Now!" style="margin-right:0.5%">
+            }
+        </div>
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:30%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure that you want to apply this course?
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-success" href="~/Training/AddTraining?id=@(c.Id)&title=@(c.Title)">Yes</a>
+                        <input id="loginSubmit" type="submit" class="btn btn-danger" value="No" data-dismiss="modal">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <br><br><br>
+
+</div>
+
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Attention</h4>
+            </div>
+            <div class="modal-body">
+                Your application has been send! Submit your fee at HBL Gulberg Branch and report at our training center with the reciept. For more details please call us at 0000-0000000 or send us a message.
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

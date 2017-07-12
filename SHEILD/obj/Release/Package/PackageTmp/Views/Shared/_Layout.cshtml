@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @using Application.Models
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 70%;
+            margin: auto;
+        }
+    </style>
+   
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $('#loginError').hide();
+            $("#loginSubmit").click(function (e)
+            {
+                varemail = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+
+                var errorCount = 0;
+
+                if (email.length == 0)
+                {
+                    document.getElementById('email').style.borderColor = "red";
+                    $('#loginError').fadeIn();
+                    errorCount++;
+                }
+                if (password.length == 0)
+                {
+                    document.getElementById('password').style.borderColor = "red";
+                    $('#loginError').fadeIn();
+                    errorCount++;
+                }
+                if (errorCount > 0)
+                {
+                    e.preventDefault();
+                }
+
+
+            });
+        });
+    </script>
+
+ 
+</head>
+
+<body>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:30%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Log In</h4>
+                </div>
+@using (Html.BeginForm("Login", "User", FormMethod.Post, new { style = "margin-left:auto; margin-right:auto; color:black" }))
+{
+                <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3 text-right">
+                                    Email:
+                                </div>
+                                <div class="col-lg-7">
+                                    <input class="form-control" id="email" name="Email" type="email">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-3 text-right">
+                                    Password:
+                                </div>
+                                <div class="col-lg-7">
+                                    <input class="form-control" id="password" name="Password" type="password">
+                                </div>
+                            </div>
+                        </div>
+                    <div id="loginError" class="alert alert-danger">Field(s) missing!</div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <input id="loginSubmit"  type="submit" class="btn btn-primary" value="Login">
+                </div>
+                    }
+            </div>
+        </div>
+    </div>
+
+     <nav class="navbar navbar-inverse" role="navigation" style="border-radius:0px">
+         <div class="navbar-header">
+             <a class="navbar-brand" href="~/Home/Index" style="color:cadetblue">S.H.I.E.L.D.</a>
+         </div>
+         <div>
+             <ul class="nav navbar-nav">
+                 <li>
+                     <a href="~/Home/Products" style="color:white">Products</a>
+                 </li>
+                 <li>
+                     <a href="~/Home/Services" style="color:white">Services</a>
+                 </li>
+                 <li>
+                     <a href="~/Home/Employment" style="color:white">Employment</a>
+                 </li>
+                 <li>
+                     <a href="~/Home/Training" style="color:white">Training</a>
+                 </li>
+                 <li>
+                     <a href="~/Home/Contact" style="color:white">Contact</a>
+                 </li>
+             </ul>
+             @if(Session["user"] == null)
+             {
+             <a class="navbar-btn btn btn-primary pull-right" style="margin-right:0.5%" href="~/Home/Register">Register</a>
+             <input type="button" class="navbar-btn btn btn-primary pull-right" data-toggle="modal" data-target="#loginModal" value="Login" style="margin-right:0.5%">
+             }
+             else
+             {
+                 User u = (User)Session["user"];
+                <a class="navbar-btn btn btn-primary pull-right" style="margin-right:0.5%" href="~/User/Logout">Logout</a>
+                <a class="navbar-btn btn btn-default pull-right" style="margin-right:0.5%" href="~/Home/Profile">@(u.Name)</a>
+             }
+                 <form class="navbar-form pull-right" role="search" action="/Home/Search" method="post" id="s">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="input" id="input" />
+                </div>
+                     <a href="javascript:{}" onclick="document.getElementById('s').submit(); return false;" class="btn btn-info btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            </form>
+        </div>
+    </nav>
+    
+            @RenderBody()
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+
+    <footer style="background-color:black; margin-top:5%">
+        <div class="container">
+            <p class="text-muted text-center" style="color:white">Copyright &copy; Hanzla Babar BITF12M546 PUCIT(NC)</p>
+        </div>
+    </footer>
+</body>
+</html>

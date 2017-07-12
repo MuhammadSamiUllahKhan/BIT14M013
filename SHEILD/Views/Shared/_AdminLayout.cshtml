@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "_AdminLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse" role="navigation" style="border-radius:0px">
+        <div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="~/Home/Index" style="color:cadetblue">S.H.I.E.L.D.</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="~/Admin/Index" style="color:white">Home</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Items" style="color:white">Items</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Courses" style="color:white">Courses</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Messages" style="color:white">Messages</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Users" style="color:white">Users</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Trainees" style="color:white">Trainees</a>
+                </li>
+                <li>
+                    <a href="~/Admin/Orders" style="color:white">Orders</a>
+                </li>
+            </ul>
+            <a class="navbar-btn btn btn-primary pull-right" style="margin-right:0.5%" href="~/User/Logout">Log Out</a>
+            <form class="navbar-form pull-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" />
+                </div>
+                <a href="#" class="btn btn-info btn-default"><span class="glyphicon glyphicon-search"></span></a>
+            </form>
+        </div>
+    </nav>
+
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+    <footer style="background-color:black; margin-top:5%">
+        <div class="container">
+            <p class="text-muted">Place sticky footer content here.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

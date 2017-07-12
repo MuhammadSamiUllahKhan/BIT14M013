@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "EditItem";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Application.Models
+@model Application.Models.Item
+
+            @using (Html.BeginForm("EditItem", "Item", FormMethod.Post, new { style = "width:50%; margin-left:auto; margin-right:auto; color:black" }))
+            {
+                @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <h2 style=" margin-left: 40%; margin-top: 5%; margin-bottom: 5%">Edit Item</h2>
+
+                    <div class="form-group">
+                        <input type="hidden" value="@(Model.Id)" name="Id" />
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(m => m.Name)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(m => m.Type)
+                            </div>
+                            <div class="col-md-4">
+                                <select id="type" name="type" class="form-control">
+                                    <option value="Product">Product</option>
+                                    <option value="Service">Service</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(m => m.Price)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Price)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(m => m.Description)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5", cols = "10" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+                        <br />
+                        <input type="submit" class="btn btn-primary btn-lg" style="margin-left:30%" value="Save Changes"/>
+                    </div>
+            }
+

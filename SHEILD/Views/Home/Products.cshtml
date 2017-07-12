@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model List<Application.Models.Item>
+
+<div>                                   
+
+    <h2 class="text-center">Our Products</h2>
+
+    @foreach (var i in Model)
+    {
+    <div class="row" style="width:70%; margin-left:15%; margin-top:5%">
+        <div class="col-lg-4">
+            <a href="~/Home/ShowItem?id=@(i.Id)"><img src="~/Content/themes/base/images/@(i.Name).jpg" style="margin-left: 3%; width: 300px; height: 200px" /></a>
+        </div>
+        <div class="col-lg-6">
+            <h4 style="margin-left:6%">@(i.Name)</h4>
+            <p style="margin-left:6%">
+                <strong>Price: </strong>@(i.Price)<br>
+            <p>
+        </div>
+        @if (Session["user"] == null)
+        {
+            <input type="button" class="navbar-btn btn btn-primary pull-right" data-toggle="modal" data-target="#loginModal" value="Login to order" style="margin-right:0.5%">
+        }
+        else
+        {
+            <input type="button" class="navbar-btn btn btn-primary pull-right" data-toggle="modal" data-target="#confirmModal" value="Order Now!" style="margin-right:0.5%">
+        }
+    </div>
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure that you want to order this item? 
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" href="~/Order/AddOrder?id=@(i.Id)">Yes</a>
+                <input id="loginSubmit" type="submit" class="btn btn-danger" value="No" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>
+}
+    <br><br><br>
+
+</div>

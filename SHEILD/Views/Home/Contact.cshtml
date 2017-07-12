@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+@using Application.Models
+@model Application.Models.Contact
+
+
+    
+@using(Html.BeginForm("AddMessage","Message",FormMethod.Post, new {style="width:50%; margin-right: auto; margin-left: auto; border: 1px"}))
+    {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+        <h2 style=" margin-left: 40%; margin-top: 5%; margin-bottom: 5%">Contact Us</h2>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3 text-right">
+                    @Html.LabelFor( m=> m.Name)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(m=>m.Name, new {@class="form-control"})
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3 text-right">
+                    @Html.LabelFor(m => m.Email)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3 text-right">
+                    @Html.LabelFor(m => m.Phone)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-3 text-right">
+                        @Html.LabelFor(m => m.Message)
+                    </div>
+                    <div class="col-lg-4">
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows="5", cols="10" })
+                        @Html.ValidationMessageFor(model => model.Message)
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="text-center col-md-2" style="margin-left:15%">
+                    <input id="contactSubmit" type="submit" title="Send" value="Send" class="btn btn-primary btn-lg">
+                </div>
+            </div>
+        </div>
+}

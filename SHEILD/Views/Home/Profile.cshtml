@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Application.Models
+@model Application.Models.User
+
+<div>
+    @using (Html.BeginForm("UpdateUser", "User", FormMethod.Post, new { style = "width:50%; margin-right: auto; margin-left: auto; border: 1px" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <h2 class="text-center">Profile Details</h2><br>
+        <div class="form-group">
+            <input type="hidden" value="@(Model.Id)" name="id" id="id">
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(m => m.Name)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(m => m.Email)
+                </div>
+                <div class="col-lg-4">
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(m => m.Password)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password" })
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(m => m.Address)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 text-right">
+                    @Html.LabelFor(m => m.Number)
+                </div>
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Number)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div style="margin-left:15%" class="col-md-3">
+                    <input id="registerSubmit" type="submit" title="Save Changes" class="btn btn-primary btn-lg" value="Save Changes">
+                </div>
+            </div>
+        </div>
+    }
+</div>

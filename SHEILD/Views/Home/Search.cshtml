@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Application.Models
+@model List<Application.Models.Item>
+
+@foreach (var i in Model)
+{
+    <div class="row" style="width:70%; margin-left:15%; margin-top:5%;opacity:0.9">
+        <div class="col-lg-4">
+            <a href="~/Home/ShowItem?id=@(i.Id)"><img src="~/Content/themes/base/images/@(i.Name).jpg" style="margin-left: 3%; width: 300px; height: 200px" /></a>
+</div>
+        <div class="col-lg-6">
+            <h4 style="margin-left:6%">@(i.Name)</h4>
+            <p style="margin-left:6%">
+                <strong>Price: </strong>@(i.Price)<br>
+                <strong>Type: </strong>@(i.Type)<br>
+                <strong>Description: </strong>@(i.Description)
+            <p>
+        </div>
+    </div>
+}

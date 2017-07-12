@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<Application.Models.User>
+
+<div>
+    <table border="2" style="width:70%; margin-left:15%; margin-top:5%;">
+        <tr class="text-center">
+            <td><strong>UserId</strong></td>
+            <td><strong>UserName</strong></td>
+            <td><strong>Email</strong></td>
+            <td><strong>Address</strong></td>
+            <td><strong>Number</strong></td>
+            <td><strong>Delete User</strong></td>
+        </tr>
+        @foreach (var u in Model)
+{
+    <tr class="text-center">
+        <td>@u.Id</td>
+        <td>@u.Name</td>
+        <td>@u.Email</td>
+        <td>@u.Address</td>
+        <td>@u.Number</td>
+        <td><a title="Remove" href="#" data-toggle="modal" data-target="#userDelete-@(u.Id)">Delete</a></td>
+ </tr>
+
+            <div class="modal fade" id="userDelete-@(u.Id)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:30%">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure that you want to delete this account?
+                        </div>
+                        <div class="modal-footer">
+                            <a id="loginSubmit" class="btn btn-success" href="~/User/RemoveUser?id=@(u.Id)">Yes</a>
+                            <a id="loginSubmit" class="btn btn-danger" data-dismiss="modal">No</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            <br>
+            <br>
+            <br>
+
+</div>
